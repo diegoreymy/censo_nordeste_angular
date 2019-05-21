@@ -1,0 +1,16 @@
+.sidebar-wrapper {
+    background-color: #262f3d;
+    height: 100%;
+}
+
+.logo {
+    background-color: #262f3d;
+}
+
+.nav p {
+    color: rgba(255, 255, 255, .7);
+}
+
+.logo .simple-text {
+    color: #fff;
+}

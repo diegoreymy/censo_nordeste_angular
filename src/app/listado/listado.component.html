@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Listado</h4>
+                        <p class="card-category"> Lista de venezolanos en Nordeste</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="loading" *ngIf="loading">
+                            <mat-progress-spinner class="tp-section" [color]="color" [mode]="mode"></mat-progress-spinner>
+                        </div>
+                        <div class="table-responsive" *ngIf="!loading">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nombres
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let usuario of usuarios">
+                                        <td class="text-primary">
+                                            {{ usuario.datosPersonales.nombres }} {{ usuario.datosPersonales.apellidos }}
+                                        </td>
+                                        <td>
+                                            {{ usuario.datosPersonales.email }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top" [hidden]="!expression">
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
-        <div class="navbar-wrapper">
+        <div class="navbar-wrapper" [hidden]="!expression">
             <a class="navbar-brand" href="#">{{getTitle()}}</a>
         </div>
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">

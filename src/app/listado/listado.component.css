@@ -1,4 +1,8 @@
 .loading {
-    width: 10%;
+    width: 30%;
     margin: 50px auto;
+}
+
+mat-progress-spinner {
+    margin: 0 auto;
 }

@@ -8,6 +8,7 @@ import { DatosContactoEmergencia } from '../services/models/datosContactoEmergen
 import { DatosComentariosSugerencias } from '../services/models/datosComentariosSugerencias';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS} from './date.adapter';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -57,7 +58,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit() {
   }
 
-  public guardarUsuarios(){
+  public guardarUsuarios(formulario: NgForm){
     this.usuario.datosPersonales = this.datosPersonales;
     this.usuario.datosMigratorios = this.datosMigratorios;
     this.usuario.datosEducativosLaborales = this.datosEducativosLaborales;
@@ -66,9 +67,9 @@ export class RegistroComponent implements OnInit {
 
     this.venService.guardarUsuarios(this.usuario).subscribe((data: any) =>{
       this.error = false;
+      formulario.resetForm();
     }, error => {
       this.error = true;
-      console.log(error)
     })
   }
 

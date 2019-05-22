@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class VenService {
   public usuariosUrl = 'https://ven-app-40809.firebaseio.com/usuarios.json'
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private firestore: AngularFirestore
     ) { }
 
   getDatosApiVenezuela() {
@@ -29,7 +31,7 @@ export class VenService {
   }
 
   getUsuarios(){
-    return this.http.get(this.usuariosUrl);
+    return this.firestore.collection('usuarios').snapshotChanges();
   }
 
   consultaCep(cep){
@@ -37,7 +39,6 @@ export class VenService {
   }
 
   guardarUsuarios(usuario){
-    return this.http.post(this.usuariosUrl, usuario);
+    return this.firestore.collection('usuarios').add(usuario);
   }
-
 }

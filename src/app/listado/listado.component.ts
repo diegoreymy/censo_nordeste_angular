@@ -27,9 +27,12 @@ export class ListadoComponent implements OnInit {
 
   public getUsuarios(){
     this.venService.getUsuarios().subscribe( (data: any) => {
-      const usuario = [];
-      Object.keys(data).map(key => usuario.push(data[key]))
-      this.usuarios = usuario;
+      this.usuarios = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as Usuario;
+      })
       this.loading = false;
     } )
   }

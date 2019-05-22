@@ -8,6 +8,7 @@ import { DatosContactoEmergencia } from '../services/models/datosContactoEmergen
 import { DatosComentariosSugerencias } from '../services/models/datosComentariosSugerencias';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS} from './date.adapter';
+import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 declare var $: any;
 
@@ -66,7 +67,7 @@ export class RegistroComponent implements OnInit {
     this.usuario.datosContactoEmergencia = this.datosContactoEmergencia;
     this.usuario.datosComentariosSugerencias = this.datosComentariosSugerencias;
 
-    this.venService.guardarUsuarios(this.usuario).subscribe((data: any) =>{
+    this.venService.guardarUsuarios(this.usuario).then((data: any) =>{
       this.error = false;
       this.showNotificationSuccess('top','right')
       formulario.resetForm();
@@ -88,7 +89,7 @@ export class RegistroComponent implements OnInit {
         this.datosPersonales.complemento = `CEP inválido`;
         this.error = true;
       })
-    }else{
+    } else{
         this.datosPersonales.complemento = ``;
     }
   }
@@ -112,9 +113,9 @@ export class RegistroComponent implements OnInit {
 
     $.notify({
         icon: 'add_alert',
-        message: 'Error! no se han podido guardar los datos, intente nuevamente o pongase en contacto con el administrador del portal.'
+        message: 'Error! no se han podido guardar los datos, intente nuevamente o póngase en contacto con el administrador del portal.'
       },{
-        type: 'error',
+        type: 'danger',
         timer: 4000,
         placement: {
         from: from,

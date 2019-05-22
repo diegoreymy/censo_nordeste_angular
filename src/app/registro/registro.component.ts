@@ -9,6 +9,7 @@ import { DatosComentariosSugerencias } from '../services/models/datosComentarios
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS} from './date.adapter';
 import { NgForm } from '@angular/forms';
+declare var $: any;
 
 @Component({
   selector: 'app-registro',
@@ -67,9 +68,11 @@ export class RegistroComponent implements OnInit {
 
     this.venService.guardarUsuarios(this.usuario).subscribe((data: any) =>{
       this.error = false;
+      this.showNotificationSuccess('top','right')
       formulario.resetForm();
     }, error => {
       this.error = true;
+      this.showNotificationError('top','right')
     })
   }
 
@@ -88,6 +91,36 @@ export class RegistroComponent implements OnInit {
     }else{
         this.datosPersonales.complemento = ``;
     }
+  }
+
+  public showNotificationSuccess(from, align){
+
+    $.notify({
+        icon: 'add_alert',
+        message: 'Muy bien! se han guardado los datos correctamente.'
+      },{
+        type: 'success',
+        timer: 4000,
+        placement: {
+        from: from,
+        align: align
+      }
+    });
+  }
+
+  public showNotificationError(from, align){
+
+    $.notify({
+        icon: 'add_alert',
+        message: 'Error! no se han podido guardar los datos, intente nuevamente o pongase en contacto con el administrador del portal.'
+      },{
+        type: 'error',
+        timer: 4000,
+        placement: {
+        from: from,
+        align: align
+      }
+    });
   }
 
   public mensajes( msj: string, tipo:string ){

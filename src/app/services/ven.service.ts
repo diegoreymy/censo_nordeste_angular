@@ -22,6 +22,14 @@ export class VenService {
 
   }
 
+  getDatosApiEstadosVenezuela() {
+
+    const url = '/assets/json/venezuela.json';
+
+    return this.http.get(url);
+
+  }
+
   getDatosApiBrasil() {
 
     const url = `https://restcountries.eu/rest/v2/name/brazil`;

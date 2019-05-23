@@ -86,86 +86,97 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="lugarDeNacimiento" placeholder="Lugar de Nacimiento" [(ngModel)]="datosPersonales.lugarDeNacimiento" required>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="profesion" placeholder="Profesión" [(ngModel)]="datosPersonales.profesion" required>
-                                    </mat-form-field>
-                                </div>
                                 <div class="col-md-3">
                                     <mat-form-field>
+                                        <mat-label>Estado donde nació</mat-label>
+                                        <mat-select type="text" name="estadoDeNacimiento" [(ngModel)]="datosPersonales.estadoDeNacimiento" (selectionChange)="consultaMunicipioVenezuela($event)" matNativeControl required>
+                                            <mat-option *ngFor="let estado of estados" [value]="estado.estado">{{estado.estado}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-form-field>
+                                        <mat-label>Ciudad donde nació</mat-label>
+                                        <mat-select type="text " name="ciudadDeNacimiento" [(ngModel)]="datosPersonales.ciudadDeNacimiento" matNativeControl required>
+                                            <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ciudad}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="profesion " placeholder="Profesión " [(ngModel)]="datosPersonales.profesion " required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-form-field>
                                         <mat-label>Grado de Instrucción</mat-label>
-                                        <mat-select type="text" name="gradoEducacional" [(ngModel)]="datosPersonales.gradoEducacional" matNativeControl required>
-                                            <mat-option value="Básica">Básica</mat-option>
-                                            <mat-option value="Media Diversificada">Media Diversificada</mat-option>
-                                            <mat-option value="Superior">Superior</mat-option>
+                                        <mat-select type="text " name="gradoEducacional " [(ngModel)]="datosPersonales.gradoEducacional " matNativeControl required>
+                                            <mat-option value="Básica ">Básica</mat-option>
+                                            <mat-option value="Media Diversificada ">Media Diversificada</mat-option>
+                                            <mat-option value="Superior ">Superior</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <mat-checkbox class="mat-form-field-infix" name="hijosMenores" [(ngModel)]="datosPersonales.hijosMenores" color='primary'>¿Tiene hijos menores viviendo con usted?</mat-checkbox>
+                            <div class="row ">
+                                <div class="col-md-4 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="hijosMenores " [(ngModel)]="datosPersonales.hijosMenores " color='primary'>¿Tiene hijos menores viviendo con usted?</mat-checkbox>
                                 </div>
-                                <div class="col-md-2">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="number" name="cantidadHijosMenores" placeholder="¿Cuántos?" [(ngModel)]="datosPersonales.cantidadHijosMenores" [disabled]='!datosPersonales.hijosMenores' [required]="datosPersonales.hijosMenores">
+                                <div class="col-md-2 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="number " name="cantidadHijosMenores " placeholder="¿Cuántos? " [(ngModel)]="datosPersonales.cantidadHijosMenores " [disabled]='!datosPersonales.hijosMenores' [required]="datosPersonales.hijosMenores ">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="cep" minlength="8" maxlength="9" placeholder="CEP" [(ngModel)]="datosPersonales.cep" (keyup)="consultaCep($event)" required>
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="cep " minlength="8 " maxlength="9 " placeholder="CEP " [(ngModel)]="datosPersonales.cep " (keyup)="consultaCep($event) " required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="numCasa" placeholder="Número" [(ngModel)]="datosPersonales.numCasa" required>
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="numCasa " placeholder="Número " [(ngModel)]="datosPersonales.numCasa " required>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="complemento" placeholder="Complemento" [(ngModel)]="datosPersonales.complemento" required>
+                            <div class="row ">
+                                <div class="col-md-9 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="complemento " placeholder="Complemento " [(ngModel)]="datosPersonales.complemento " required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="tel" name="telefono" placeholder="Teléfono" [(ngModel)]="datosPersonales.telefono" required>
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="tel " name="telefono " placeholder="Teléfono " [(ngModel)]="datosPersonales.telefono " required>
                                     </mat-form-field>
                                 </div>
                             </div>
                             <br>
                             <h3>Datos Migratorios</h3>
                             <br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <mat-checkbox class="mat-form-field-infix" name="registroConsular" [(ngModel)]="datosMigratorios.registroConsular" color='primary'>¿Tiene Registro Consular?</mat-checkbox>
+                            <div class="row ">
+                                <div class="col-md-3 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="registroConsular " [(ngModel)]="datosMigratorios.registroConsular " color='primary'>¿Tiene Registro Consular?</mat-checkbox>
                                 </div>
-                                <div class="col-md-2">
-                                    <mat-checkbox class="mat-form-field-infix" name="rne" [(ngModel)]="datosMigratorios.rne" color='primary'>¿Tiene RNE?</mat-checkbox>
+                                <div class="col-md-2 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="rne " [(ngModel)]="datosMigratorios.rne " color='primary'>¿Tiene RNE?</mat-checkbox>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 ">
                                     <mat-form-field>
-                                        <input matInput name="fechaEntradaBrasil" [matDatepicker]="fechaEntradaBrasil" [(ngModel)]="datosMigratorios.fechaEntradaBrasil" placeholder="Fecha Aproximada de entrada a Brasil" required>
-                                        <mat-datepicker-toggle matSuffix [for]="fechaEntradaBrasil"></mat-datepicker-toggle>
+                                        <input matInput name="fechaEntradaBrasil " [matDatepicker]="fechaEntradaBrasil " [(ngModel)]="datosMigratorios.fechaEntradaBrasil " placeholder="Fecha Aproximada de entrada a Brasil " required>
+                                        <mat-datepicker-toggle matSuffix [for]="fechaEntradaBrasil "></mat-datepicker-toggle>
                                         <mat-datepicker #fechaEntradaBrasil></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 ">
                                     <mat-form-field>
                                         <mat-label>Situación Migratoria Actual</mat-label>
-                                        <mat-select type="text" name="situacionMigratoriaActual" [(ngModel)]="datosMigratorios.situacionMigratoriaActual" matNativeControl required>
-                                            <mat-option value="Refugiado">Refugiado</mat-option>
-                                            <mat-option value="Residencia Temporal">Residencia Temporal</mat-option>
-                                            <mat-option value="Residencia Permanente">Residencia Permanente</mat-option>
-                                            <mat-option value="Visa de Trabajo">Visa de Trabajo</mat-option>
-                                            <mat-option value="Visa estudiante">Visa estudiante</mat-option>
-                                            <mat-option value="Turista">Turista</mat-option>
+                                        <mat-select type="text " name="situacionMigratoriaActual " [(ngModel)]="datosMigratorios.situacionMigratoriaActual " matNativeControl required>
+                                            <mat-option value="Refugiado ">Refugiado</mat-option>
+                                            <mat-option value="Residencia Temporal ">Residencia Temporal</mat-option>
+                                            <mat-option value="Residencia Permanente ">Residencia Permanente</mat-option>
+                                            <mat-option value="Visa de Trabajo ">Visa de Trabajo</mat-option>
+                                            <mat-option value="Visa estudiante ">Visa estudiante</mat-option>
+                                            <mat-option value="Turista ">Turista</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
@@ -173,18 +184,19 @@
                             <br>
                             <h3>Datos Educativos y/o Laborales</h3>
                             <br>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <mat-checkbox class="mat-form-field-infix" name="trabaja" [(ngModel)]="datosEducativosLaborales.trabaja" color='primary'>¿Trabaja?</mat-checkbox>
+                            <div class="row ">
+                                <div class="col-md-2 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="trabaja " [(ngModel)]="datosEducativosLaborales.trabaja " color='primary'>¿Trabaja?</mat-checkbox>
                                 </div>
-                                <div class="col-md-2">
-                                    <mat-checkbox class="mat-form-field-infix" name="estudia" [(ngModel)]="datosEducativosLaborales.estudia" color='primary'>¿Estudia?</mat-checkbox>
+                                <div class="col-md-2 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="estudia " [(ngModel)]="datosEducativosLaborales.estudia " color='primary'>¿Estudia?</mat-checkbox>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 ">
                                     <mat-form-field>
                                         <mat-label>Area Laboral o de Estudios</mat-label>
-                                        <mat-select type="text" name="areaLaboralEstudio" [(ngModel)]="datosEducativosLaborales.areaLaboralEstudio" matNativeControl required [disabled]='!datosEducativosLaborales.trabaja && !datosEducativosLaborales.estudia' [required]="datosEducativosLaborales.trabaja || datosEducativosLaborales.estudia">
-                                            <mat-option *ngFor="let area of areasLaboralEstudio" [value]="area">{{area}}</mat-option>
+                                        <mat-select type="text " name="areaLaboralEstudio " [(ngModel)]="datosEducativosLaborales.areaLaboralEstudio
+                                            " matNativeControl required [disabled]='!datosEducativosLaborales.trabaja && !datosEducativosLaborales.estudia' [required]="datosEducativosLaborales.trabaja || datosEducativosLaborales.estudia ">
+                                            <mat-option *ngFor="let area of areasLaboralEstudio " [value]="area ">{{area}}</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
@@ -192,22 +204,22 @@
                             <br>
                             <h3>Datos de Contacto para Emergencias</h3>
                             <br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="personaContactoEmergencia" [value]="" placeholder="Nombre" [(ngModel)]="datosContactoEmergencia.personaContactoEmergencia" required>
+                            <div class="row ">
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="personaContactoEmergencia " [value]=" " placeholder="Nombre " [(ngModel)]="datosContactoEmergencia.personaContactoEmergencia " required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput type="tel" name="telefonoContactoEmergencia" placeholder="Teléfono" [(ngModel)]="datosContactoEmergencia.telefonoContactoEmergencia" required>
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="tel " name="telefonoContactoEmergencia " placeholder="Teléfono " [(ngModel)]="datosContactoEmergencia.telefonoContactoEmergencia " required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 ">
                                     <mat-form-field>
                                         <mat-label>Parentesco con esta Persona</mat-label>
-                                        <mat-select type="text" name="parentescoContactoEmergencia" [(ngModel)]="datosContactoEmergencia.parentescoContactoEmergencia" matNativeControl required>
-                                            <mat-option *ngFor="let parentesco of listaDeParentescos" [value]="parentesco">{{parentesco}}</mat-option>
+                                        <mat-select type="text " name="parentescoContactoEmergencia " [(ngModel)]="datosContactoEmergencia.parentescoContactoEmergencia " matNativeControl required>
+                                            <mat-option *ngFor="let parentesco of listaDeParentescos " [value]="parentesco ">{{parentesco}}</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
@@ -215,15 +227,15 @@
                             <br>
                             <h3>Sugerencias y Comentarios</h3>
                             <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <mat-form-field class="example-full-width">
-                                        <textarea matInput name="comentariosSugerencias" [value]="" placeholder="" [(ngModel)]="datosComentariosSugerencias.comentariosSugerencias" placeholder="Por favor, deje aqui cualquier comentario o sugerencia." required></textarea>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <textarea matInput name="comentariosSugerencias " [value]=" " placeholder=" " [(ngModel)]="datosComentariosSugerencias.comentariosSugerencias " placeholder="Por favor, deje aqui cualquier comentario o sugerencia. " required></textarea>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="!registro.valid">Guardar</button>
-                            <div class="clearfix"></div>
+                            <button mat-raised-button type="submit " class="btn btn-danger pull-right " [disabled]="!registro.valid ">Guardar</button>
+                            <div class="clearfix "></div>
                         </form>
                     </div>
                 </div>

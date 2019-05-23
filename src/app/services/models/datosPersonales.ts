@@ -10,7 +10,8 @@ export interface DatosPersonales {
     fechaDeVencimientoPasaporte?: Date;
     registroElectoral?: string;
     lugarRegistroElectoral?: string;
-    lugarDeNacimiento?: string;
+    estadoDeNacimiento?: string;
+    ciudadDeNacimiento?: string;
     estadoCivil?: string;
     sexo?: string;
     edad?: number;

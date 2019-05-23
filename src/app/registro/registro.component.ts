@@ -8,7 +8,6 @@ import { DatosContactoEmergencia } from '../services/models/datosContactoEmergen
 import { DatosComentariosSugerencias } from '../services/models/datosComentariosSugerencias';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS} from './date.adapter';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 declare var $: any;
 
@@ -51,6 +50,8 @@ export class RegistroComponent implements OnInit {
     'clase': ''
   };
 
+  public estados = [];
+  public ciudades = [];
   public alert = false;
 
   constructor(
@@ -58,6 +59,7 @@ export class RegistroComponent implements OnInit {
   ){ }
 
   ngOnInit() {
+    this.consultaEstadosVenezuela();
   }
 
   public guardarUsuarios(formulario: NgForm){
@@ -92,6 +94,18 @@ export class RegistroComponent implements OnInit {
     } else{
         this.datosPersonales.complemento = ``;
     }
+  }
+
+  public consultaEstadosVenezuela(){
+    this.venService.getDatosApiEstadosVenezuela().subscribe((data: any) =>{
+      this.estados = data;
+    })
+  }
+
+  public consultaMunicipioVenezuela(event){
+    const estadoSeleccionado = event.source.value;
+    this.ciudades = this.estados.filter(estado => estado.estado === estadoSeleccionado)
+    this.ciudades = this.ciudades[0].ciudades;
   }
 
   public showNotificationSuccess(from, align){

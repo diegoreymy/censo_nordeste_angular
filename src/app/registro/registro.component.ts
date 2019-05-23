@@ -27,9 +27,21 @@ declare var $: any;
 export class RegistroComponent implements OnInit {
 
   public usuario: Usuario = {};
-  public datosPersonales: DatosPersonales = {};
-  public datosMigratoriosElectorales: DatosMigratoriosElectorales = {};
-  public datosEducativosLaborales: DatosEducativosLaborales = {};
+  public datosPersonales: DatosPersonales = {
+    hijosMenores: false
+  };
+  public datosMigratoriosElectorales: DatosMigratoriosElectorales = {
+    registroConsular: false,
+    rne: false,
+    cedula: false,
+    pasaporte: false,
+    registroElectoral: false
+  };
+  public datosEducativosLaborales: DatosEducativosLaborales = {
+    trabaja: false,
+    estudia: false,
+    desempleado: false,
+  };
   public datosContacto: DatosContacto = {};
   public datosComentariosSugerencias: DatosComentariosSugerencias = {};
 
@@ -40,12 +52,6 @@ export class RegistroComponent implements OnInit {
   public listaDeParentescos = ['Padre/Madre', 'Hijo (a)', 'Hermano (a)', 'Esposo (a)', 'Tío (a)', 'Primo (a)', 'Amigo (a)', 'Yerno (a)', 'Suegro (a)', 'Abuelo (a)', 'Nieto (a)', 'Cuñado (a)', 'Sobrino (a)'];
 
   public error = false;
-
-  public mensaje: any = {
-    'texto': '',
-    'clase': ''
-  };
-
   public estados = [];
   public ciudades = [];
   public alert = false;
@@ -59,6 +65,7 @@ export class RegistroComponent implements OnInit {
   }
 
   public guardarUsuarios(formulario: NgForm){
+
     this.usuario.datosPersonales = this.datosPersonales;
     this.usuario.datosMigratoriosElectorales = this.datosMigratoriosElectorales;
     this.usuario.datosEducativosLaborales = this.datosEducativosLaborales;
@@ -79,7 +86,7 @@ export class RegistroComponent implements OnInit {
     if(event.target.value.length >= 8 ){
       this.venService.consultaCep(event.target.value).subscribe((data: any) =>{
         if(data.logradouro === undefined || data.bairro === undefined || data.localidade === undefined || data.uf === undefined){
-          this.datosContacto.complemento = `CEP inválido`
+          this.error = true;
         } else{
           this.datosContacto.logradouroResidencia = data.logradouro;
           this.datosContacto.barrioResidencia = data.bairro;
@@ -87,11 +94,10 @@ export class RegistroComponent implements OnInit {
           this.datosContacto.estadoResidencia = data.uf;
         }
       }, error => {
-        this.datosContacto.complemento = `CEP inválido`;
         this.error = true;
       })
     } else{
-        this.datosContacto.complemento = ``;
+      this.error = true;
     }
   }
 
@@ -136,11 +142,4 @@ export class RegistroComponent implements OnInit {
       }
     });
   }
-
-  public mensajes( msj: string, tipo:string ){
-    this.mensaje.texto = msj;
-    this.mensaje.clase = tipo;
-
-  }
-
 }

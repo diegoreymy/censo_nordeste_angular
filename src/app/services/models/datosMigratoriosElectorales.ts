@@ -8,6 +8,6 @@ export interface DatosMigratoriosElectorales {
     pasaporte?: boolean;
     numPasaporte?: string;
     fechaDeVencimientoPasaporte?: Date;
-    registroElectoral?: string;
+    registroElectoral?: boolean;
     lugarRegistroElectoral?: string;
 }

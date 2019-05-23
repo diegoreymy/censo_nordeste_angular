@@ -9,7 +9,10 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive table-upgrade">
-                            <table class="table">
+                            <div class="loading pull-center" *ngIf="loading">
+                                <mat-progress-spinner class="tp-section" [color]="color" [mode]="mode"></mat-progress-spinner>
+                            </div>
+                            <table class="table" *ngIf="!loading">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -21,27 +24,27 @@
                                     <tr>
                                         <td>Total Registrados</td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">--</td>
+                                        <td class="text-center">{{cantidadRegistrados}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Trabajando</td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">--</td>
+                                        <td class="text-center">{{cantidadTrabajando}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total con Registro Consular</td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">--</td>
+                                        <td class="text-center">{{cantidadConRegistroConsular}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total con Registro Electoral</td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">--</td>
+                                        <td class="text-center">{{cantidadConRegistroElectoral}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Estudiando</td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">--</td>
+                                        <td class="text-center">{{cantidadEstudiando}}</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center"></td>

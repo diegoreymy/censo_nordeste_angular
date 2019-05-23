@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <mat-form-field class="example-full-width ">
-                                        <input matInput type="text " name="logradouroResidencia" placeholder="Logradouro" [(ngModel)]="datosContacto.logradouroResidencia" required>
+                                        <input matInput type="text " name="logradouroResidencia" placeholder="Calle" [(ngModel)]="datosContacto.logradouroResidencia" required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2 ">
@@ -224,30 +224,8 @@
                                 </div>
                             </div>
                             <br>
-                            <h3>Datos Educativos y/o Laborales</h3>
+                            <h3>Datos Educativos y Laborales</h3>
                             <br>
-                            <div class="row ">
-                                <div class="col-md-2 ">
-                                    <mat-checkbox class="mat-form-field-infix " name="trabaja " [(ngModel)]="datosEducativosLaborales.trabaja " color='primary'>¿Trabaja?</mat-checkbox>
-                                </div>
-                                <div class="col-md-2 ">
-                                    <mat-checkbox class="mat-form-field-infix " name="estudia " [(ngModel)]="datosEducativosLaborales.estudia " color='primary'>¿Estudia?</mat-checkbox>
-                                </div>
-                                <div class="col-md-4 ">
-                                    <mat-form-field>
-                                        <mat-label>Area Laboral o de Estudios</mat-label>
-                                        <mat-select type="text " name="areaLaboralEstudio " [(ngModel)]="datosEducativosLaborales.areaLaboralEstudio
-                                            " matNativeControl required [disabled]='!datosEducativosLaborales.trabaja && !datosEducativosLaborales.estudia' [required]="datosEducativosLaborales.trabaja || datosEducativosLaborales.estudia ">
-                                            <mat-option *ngFor="let area of areasLaboralEstudio " [value]="area ">{{area}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4 ">
-                                    <mat-form-field class="example-full-width ">
-                                        <input matInput type="text " name="profesion " placeholder="Profesión o área de especialidad" [(ngModel)]="datosEducativosLaborales.profesion " required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
                             <div class="row ">
                                 <div class="col-md-3 ">
                                     <mat-form-field>
@@ -259,9 +237,34 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-9 ">
+                                <div class="col-md-3 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput type="text " name="profesion " placeholder="Profesión o área de especialidad" [(ngModel)]="datosEducativosLaborales.profesion " required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6 ">
                                     <mat-form-field class="example-full-width ">
                                         <input matInput type="text " name="desTrabajoActual " placeholder="Describa brevemente su trabajo o situación laboral actual" [(ngModel)]="datosEducativosLaborales.desTrabajoActual " required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-3 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="trabaja " [(ngModel)]="datosEducativosLaborales.trabaja " color='primary'>¿Está Trabajando?</mat-checkbox>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="estudia " [(ngModel)]="datosEducativosLaborales.estudia " color='primary'>¿Está Estudiando?</mat-checkbox>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-checkbox class="mat-form-field-infix " name="estudia " [(ngModel)]="datosEducativosLaborales.desempleado " color='primary'>¿Está Desempleado?</mat-checkbox>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-form-field>
+                                        <mat-label>Area Laboral o de Estudios</mat-label>
+                                        <mat-select type="text " name="areaLaboralEstudio " [(ngModel)]="datosEducativosLaborales.areaLaboralEstudio
+                                            " matNativeControl required [disabled]='!datosEducativosLaborales.trabaja && !datosEducativosLaborales.estudia' [required]="datosEducativosLaborales.trabaja || datosEducativosLaborales.estudia ">
+                                            <mat-option *ngFor="let area of areasLaboralEstudio " [value]="area ">{{area}}</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                             </div>

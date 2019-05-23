@@ -1,14 +1,14 @@
 import { DatosPersonales } from './datosPersonales';
-import { DatosMigratorios } from './datosMigratorios';
+import { DatosMigratoriosElectorales } from './datosMigratoriosElectorales';
 import { DatosEducativosLaborales } from './datosEducativosLaborales';
-import { DatosContactoEmergencia } from './datosContactoEmergencia';
+import { DatosContacto } from './datosContacto';
 import { DatosComentariosSugerencias } from './datosComentariosSugerencias';
 
 export interface Usuario {
   datosPersonales?: DatosPersonales;
-  datosMigratorios?: DatosMigratorios;
+  datosMigratoriosElectorales?: DatosMigratoriosElectorales;
   datosEducativosLaborales?: DatosEducativosLaborales;
-  datosContactoEmergencia?: DatosContactoEmergencia;
+  datosContacto?: DatosContacto;
   datosComentariosSugerencias?: DatosComentariosSugerencias;
 
 }

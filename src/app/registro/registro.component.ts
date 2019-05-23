@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { VenService } from '../services/ven.service';
 import { Usuario } from '../services/models/usuario';
 import { DatosPersonales } from '../services/models/datosPersonales';
-import { DatosMigratorios } from '../services/models/datosMigratorios';
+import { DatosMigratoriosElectorales } from '../services/models/datosMigratoriosElectorales';
 import { DatosEducativosLaborales } from '../services/models/datosEducativosLaborales';
-import { DatosContactoEmergencia } from '../services/models/datosContactoEmergencia';
+import { DatosContacto } from '../services/models/datosContacto';
 import { DatosComentariosSugerencias } from '../services/models/datosComentariosSugerencias';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS} from './date.adapter';
@@ -27,14 +27,10 @@ declare var $: any;
 export class RegistroComponent implements OnInit {
 
   public usuario: Usuario = {};
-  public datosPersonales: DatosPersonales = {
-    cedula: true,
-    pasaporte: true,
-    cep: '',
-  };
-  public datosMigratorios: DatosMigratorios = {};
+  public datosPersonales: DatosPersonales = {};
+  public datosMigratoriosElectorales: DatosMigratoriosElectorales = {};
   public datosEducativosLaborales: DatosEducativosLaborales = {};
-  public datosContactoEmergencia: DatosContactoEmergencia = {};
+  public datosContacto: DatosContacto = {};
   public datosComentariosSugerencias: DatosComentariosSugerencias = {};
 
 // tslint:disable-next-line: max-line-length
@@ -64,9 +60,9 @@ export class RegistroComponent implements OnInit {
 
   public guardarUsuarios(formulario: NgForm){
     this.usuario.datosPersonales = this.datosPersonales;
-    this.usuario.datosMigratorios = this.datosMigratorios;
+    this.usuario.datosMigratoriosElectorales = this.datosMigratoriosElectorales;
     this.usuario.datosEducativosLaborales = this.datosEducativosLaborales;
-    this.usuario.datosContactoEmergencia = this.datosContactoEmergencia;
+    this.usuario.datosContacto = this.datosContacto;
     this.usuario.datosComentariosSugerencias = this.datosComentariosSugerencias;
 
     this.venService.guardarUsuarios(this.usuario).then((data: any) =>{
@@ -83,16 +79,19 @@ export class RegistroComponent implements OnInit {
     if(event.target.value.length >= 8 ){
       this.venService.consultaCep(event.target.value).subscribe((data: any) =>{
         if(data.logradouro === undefined || data.bairro === undefined || data.localidade === undefined || data.uf === undefined){
-          this.datosPersonales.complemento = `CEP inválido`
+          this.datosContacto.complemento = `CEP inválido`
         } else{
-          this.datosPersonales.complemento = `${data.logradouro}, ${data.bairro} - ${data.localidade} - ${data.uf}`;
+          this.datosContacto.logradouroResidencia = data.logradouro;
+          this.datosContacto.barrioResidencia = data.bairro;
+          this.datosContacto.ciudadResidencia = data.localidade;
+          this.datosContacto.estadoResidencia = data.uf;
         }
       }, error => {
-        this.datosPersonales.complemento = `CEP inválido`;
+        this.datosContacto.complemento = `CEP inválido`;
         this.error = true;
       })
     } else{
-        this.datosPersonales.complemento = ``;
+        this.datosContacto.complemento = ``;
     }
   }
 

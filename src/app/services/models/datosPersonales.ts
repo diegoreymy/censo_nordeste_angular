@@ -4,6 +4,7 @@ export interface DatosPersonales {
     apellidos?: string;
     numCedula?: number;
     fechaDeNacimeinto?: Date;
+    paisDeNacimiento?: string;
     estadoDeNacimiento?: string;
     ciudadDeNacimiento?: string;
     estadoCivil?: string;

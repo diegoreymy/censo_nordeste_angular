@@ -28,7 +28,8 @@ export class RegistroComponent implements OnInit {
 
   public usuario: Usuario = {};
   public datosPersonales: DatosPersonales = {
-    hijosMenores: false
+    hijosMenores: false,
+    paisDeNacimiento: 'Venezuela'
   };
   public datosMigratoriosElectorales: DatosMigratoriosElectorales = {
     registroConsular: false,
@@ -109,8 +110,13 @@ export class RegistroComponent implements OnInit {
 
   public consultaMunicipioVenezuela(event){
     const estadoSeleccionado = event.source.value;
-    this.ciudades = this.estados.filter(estado => estado.estado === estadoSeleccionado)
-    this.ciudades = this.ciudades[0].ciudades;
+    if(estadoSeleccionado !== 'Distrito Capital'){
+      this.ciudades = this.estados.filter(estado => estado.estado === estadoSeleccionado)
+      this.ciudades = this.ciudades[0].ciudades;
+    }else{
+      this.ciudades = this.estados.filter(estado => estado.estado === estadoSeleccionado)
+      this.ciudades = this.ciudades[0].municipios[0].parroquias;
+    }
   }
 
   public showNotificationSuccess(from, align){

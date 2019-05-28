@@ -29,27 +29,46 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <mat-form-field>
                                         <input matInput name="fechaDeNacimiento" [matDatepicker]="fechaDeNacimiento" [(ngModel)]="datosPersonales.fechaDeNacimeinto" placeholder="Fecha de Nacimiento" required>
                                         <mat-datepicker-toggle matSuffix [for]="fechaDeNacimiento"></mat-datepicker-toggle>
                                         <mat-datepicker #fechaDeNacimiento></mat-datepicker>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>País de Nacimiento</mat-label>
+                                        <mat-select type="text" name="sexo" [(ngModel)]="datosPersonales.paisDeNacimiento" matNativeControl required>
+                                            <mat-option value="Venezuela">Venezuela</mat-option>
+                                            <mat-option value="Otro">Otro</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3" *ngIf="datosPersonales.paisDeNacimiento == 'Venezuela'">
                                     <mat-form-field>
                                         <mat-label>Estado donde nació</mat-label>
-                                        <mat-select type="text" name="estadoDeNacimiento" [(ngModel)]="datosPersonales.estadoDeNacimiento" (selectionChange)="consultaMunicipioVenezuela($event)" matNativeControl required>
+                                        <mat-select type="text" name="estadoDeNacimiento" [(ngModel)]="datosPersonales.estadoDeNacimiento" (selectionChange)="consultaMunicipioVenezuela($event)" matNativeControl [required]="datosPersonales.paisDeNacimiento == 'Venezuela'">
                                             <mat-option *ngFor="let estado of estados" [value]="estado.estado">{{estado.estado}}</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3" *ngIf="datosPersonales.paisDeNacimiento == 'Venezuela'">
                                     <mat-form-field>
                                         <mat-label>Ciudad donde nació</mat-label>
-                                        <mat-select type="text" name="ciudadDeNacimiento" [(ngModel)]="datosPersonales.ciudadDeNacimiento" matNativeControl required>
+                                        <mat-select type="text" name="ciudadDeNacimiento" [(ngModel)]="datosPersonales.ciudadDeNacimiento" matNativeControl [required]="datosPersonales.paisDeNacimiento == 'Venezuela'">
                                             <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ciudad}}</mat-option>
                                         </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3" *ngIf="datosPersonales.paisDeNacimiento == 'Otro'">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="text" name="pais" [value]="" placeholder="País" [(ngModel)]="datosPersonales.estadoDeNacimiento" [required]="datosPersonales.paisDeNacimiento == 'Otro'">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3" *ngIf="datosPersonales.paisDeNacimiento == 'Otro'">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="text" name="ciudad" placeholder="Ciudad" [(ngModel)]="datosPersonales.ciudadDeNacimiento" [required]="datosPersonales.paisDeNacimiento == 'Otro'">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -69,6 +88,7 @@
                                         <mat-select type="text" name="estadoCivil" [(ngModel)]="datosPersonales.estadoCivil" matNativeControl required>
                                             <mat-option value="Soltero">Soltero (a)</mat-option>
                                             <mat-option value="Casado">Casado (a)</mat-option>
+                                            <mat-option value="Casado">Divorciado (a)</mat-option>
                                             <mat-option value="Casado">Viudo (a)</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -183,6 +203,7 @@
                                             <mat-option value="Visa de Trabajo">Visa de Trabajo</mat-option>
                                             <mat-option value="Visa estudiante">Visa estudiante</mat-option>
                                             <mat-option value="Turista">Turista</mat-option>
+                                            <mat-option value="Doble Nacionalidad">Doble Nacionalidad</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>

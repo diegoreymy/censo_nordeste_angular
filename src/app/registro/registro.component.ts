@@ -56,6 +56,7 @@ export class RegistroComponent implements OnInit {
   public estados = [];
   public ciudades = [];
   public alert = false;
+  public cepIsValid = false;
 
   constructor(
     private venService: VenService
@@ -67,6 +68,12 @@ export class RegistroComponent implements OnInit {
 
   public guardarUsuarios(formulario: NgForm){
 
+    if( !formulario.valid ) {
+      const mensaje = 'Hay campos obligatorios que necesita llenar, por favor complete el formulario'
+      this.showNotificationError('top', 'right', mensaje)
+      return false;
+    }
+
     this.usuario.datosPersonales = this.datosPersonales;
     this.usuario.datosMigratoriosElectorales = this.datosMigratoriosElectorales;
     this.usuario.datosEducativosLaborales = this.datosEducativosLaborales;
@@ -75,16 +82,19 @@ export class RegistroComponent implements OnInit {
 
     this.venService.guardarUsuarios(this.usuario).then((data: any) =>{
       this.error = false;
-      this.showNotificationSuccess('top','right')
+      const mensaje = 'Muy bien! se han guardado los datos correctamente.'
+      this.showNotificationSuccess('top', 'right', mensaje)
       formulario.resetForm();
     }, error => {
       this.error = true;
-      this.showNotificationError('top','right')
+      const mensaje = 'Error! no se han podido guardar los datos, intente nuevamente o póngase en contacto con el administrador del portal.'
+      this.showNotificationError('top', 'right', mensaje);
     })
   }
 
   public consultaCep(event){
     if(event.target.value.length >= 8 ){
+      this.cepIsValid = true;
       this.venService.consultaCep(event.target.value).subscribe((data: any) =>{
         if(data.logradouro === undefined || data.bairro === undefined || data.localidade === undefined || data.uf === undefined){
           this.error = true;
@@ -99,6 +109,11 @@ export class RegistroComponent implements OnInit {
       })
     } else{
       this.error = true;
+      this.cepIsValid = false;
+      this.datosContacto.logradouroResidencia = '';
+      this.datosContacto.barrioResidencia = '';
+      this.datosContacto.ciudadResidencia = '';
+      this.datosContacto.estadoResidencia = '';
     }
   }
 
@@ -119,11 +134,11 @@ export class RegistroComponent implements OnInit {
     }
   }
 
-  public showNotificationSuccess(from, align){
+  public showNotificationSuccess(from, align, mensaje){
 
     $.notify({
         icon: 'add_alert',
-        message: 'Muy bien! se han guardado los datos correctamente.'
+        message: mensaje
       },{
         type: 'success',
         timer: 4000,
@@ -134,11 +149,11 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  public showNotificationError(from, align){
+  public showNotificationError(from, align, mensaje){
 
     $.notify({
         icon: 'add_alert',
-        message: 'Error! no se han podido guardar los datos, intente nuevamente o póngase en contacto con el administrador del portal.'
+        message: mensaje
       },{
         type: 'danger',
         timer: 4000,

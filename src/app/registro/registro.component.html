@@ -108,12 +108,12 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="cep" minlength="8" maxlength="9" placeholder="Introduzca el CEP (Código Postal) de su residencia" [(ngModel)]="datosContacto.cep" (keyup)="consultaCep($event)" required>
+                                        <input matInput type="text" name="cep" minlength="8" maxlength="9" placeholder="Introduzca el CEP (Código Postal) de su residencia" [(ngModel)]="datosContacto.cep" (keyup)="consultaCep($event)">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-5">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="logradouroResidencia" placeholder="Calle" [(ngModel)]="datosContacto.logradouroResidencia" required>
+                                        <input matInput type="text" name="logradouroResidencia" placeholder="Calle" [(ngModel)]="datosContacto.logradouroResidencia" [disabled]='cepIsValid' required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2">
@@ -125,24 +125,24 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="barrioResidencia" placeholder="Barrio" [(ngModel)]="datosContacto.barrioResidencia" required>
+                                        <input matInput type="text" name="barrioResidencia" placeholder="Barrio" [(ngModel)]="datosContacto.barrioResidencia" [disabled]='cepIsValid' required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="ciudadResidencia" placeholder="Ciudad" [(ngModel)]="datosContacto.ciudadResidencia" required>
+                                        <input matInput type="text" name="ciudadResidencia" placeholder="Ciudad" [(ngModel)]="datosContacto.ciudadResidencia" [disabled]='cepIsValid' required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="estadoResidencia" placeholder="Estado" [(ngModel)]="datosContacto.estadoResidencia" required>
+                                        <input matInput type="text" name="estadoResidencia" placeholder="Estado" [(ngModel)]="datosContacto.estadoResidencia" [disabled]='cepIsValid' required>
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="complemento" placeholder="Complemento" [(ngModel)]="datosContacto.complemento" required>
+                                        <input matInput type="text" name="complemento" placeholder="Complemento" [(ngModel)]="datosContacto.complemento">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
@@ -295,11 +295,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <mat-form-field class="example-full-width">
-                                        <textarea matInput name="comentariosSugerencias" [value]="" placeholder="" [(ngModel)]="datosComentariosSugerencias.comentariosSugerencias" placeholder="Por favor, deje aqui cualquier comentario o sugerencia." required></textarea>
+                                        <textarea matInput name="comentariosSugerencias" [value]="" placeholder="" [(ngModel)]="datosComentariosSugerencias.comentariosSugerencias" placeholder="Por favor, deje aqui cualquier comentario o sugerencia."></textarea>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="!registro.valid">Guardar</button>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" value='Guardar'>Guardar</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>

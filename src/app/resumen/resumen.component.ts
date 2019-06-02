@@ -29,7 +29,7 @@ export class ResumenComponent implements OnInit {
   public cantidadRegistrados = 0;
   public cantidadTrabajando = 0;
   public cantidadConRegistroConsular = 0;
-  public cantidadConRegistroElectoral = 0;
+  public cantidadConRegistroElectoralRecife = 0;
   public cantidadEstudiando = 0;
 
   constructor(
@@ -53,7 +53,7 @@ export class ResumenComponent implements OnInit {
       // tslint:disable-next-line: max-line-length
       this.usuarios.map(usuario=> usuario.datosMigratoriosElectorales.registroConsular === true ? this.cantidadConRegistroConsular++ : this.cantidadConRegistroConsular)
       // tslint:disable-next-line: max-line-length
-      this.usuarios.map(usuario=> usuario.datosMigratoriosElectorales.registroElectoral === true ? this.cantidadConRegistroElectoral++ : this.cantidadConRegistroElectoral)
+      this.usuarios.map(usuario=> usuario.datosMigratoriosElectorales.lugarRegistroElectoral === 'Recife' ? this.cantidadConRegistroElectoralRecife++ : this.cantidadConRegistroElectoralRecife)
       this.usuarios.map(usuario=> usuario.datosEducativosLaborales.estudia === true ? this.cantidadEstudiando++ : this.cantidadEstudiando)
       this.loading = false;
     }, error => {

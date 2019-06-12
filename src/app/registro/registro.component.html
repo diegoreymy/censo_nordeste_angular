@@ -251,7 +251,7 @@
                                 <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label>Grado de Instrucción Actual</mat-label>
-                                        <mat-select type="text" name="gradoEducacional" [(ngModel)]="datosEducativosLaborales.gradoEducacional" matNativeControl required>
+                                        <mat-select type="text" name="gradoEducacional" [(ngModel)]="datosEducativosLaborales.gradoEducacional" matNativeControl>
                                             <mat-option value="Básica">Básica</mat-option>
                                             <mat-option value="Media Diversificada">Media Diversificada</mat-option>
                                             <mat-option value="Superior">Superior</mat-option>
@@ -260,12 +260,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="profesion" placeholder="Profesión o área de especialidad" [(ngModel)]="datosEducativosLaborales.profesion" required>
+                                        <input matInput type="text" name="profesion" placeholder="Profesión o área de especialidad" [(ngModel)]="datosEducativosLaborales.profesion">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="desTrabajoActual" placeholder="Describa brevemente su trabajo o situación laboral actual" [(ngModel)]="datosEducativosLaborales.desTrabajoActual" required>
+                                        <input matInput type="text" name="desTrabajoActual" placeholder="Describa brevemente su trabajo o situación laboral actual" [(ngModel)]="datosEducativosLaborales.desTrabajoActual">
                                     </mat-form-field>
                                 </div>
                             </div>
